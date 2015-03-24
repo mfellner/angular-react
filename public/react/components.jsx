@@ -1,16 +1,45 @@
+/**
+ * ReactJS components
+ */
+ 
 var Clicker = React.createClass({
-  getInitialState: function () {
+
+  // The default props will be overridden by the directive's attrs.
+  getDefaultProps: function () {
     return {
-      count: 0
+      min: 0,
+      max: Number.MAX_SAFE_INTEGER
     };
   },
 
+  getInitialState: function () {
+    return {
+      count: this.getMin()
+    };
+  },
+
+  // Angular directive's attrs are strings, so we need to parse them.
+  getMin: function () {
+    return parseInt(this.props.min);
+  },
+
+  getMax: function () {
+    return parseInt(this.props.max);
+  },
+
   onClick: function () {
-    this.setState({count: this.state.count + 1});
+    var count;
+
+    if (this.state.count < this.getMax()) {
+      count = this.state.count + 1;
+    } else {
+      count = this.getMin();
+    }
+    this.setState({count: count});
   },
 
   onReset: function () {
-    this.setState({count: 0});
+    this.setState({count: this.getMin()});
   },
 
   render: function () {
@@ -26,8 +55,3 @@ var Clicker = React.createClass({
     );
   }
 });
-
-// React.render(
-//   <Clicker/>,
-//   document.getElementById('ng-react')
-// );
