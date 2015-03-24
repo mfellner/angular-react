@@ -41,4 +41,9 @@ gulp.task 'browserSync', ['build'], ->
     server:
       baseDir: "./build"
 
-gulp.task 'default', ['browserSync']
+gulp.task 'watch', ['browserSync'], ->
+  gulp.watch src.ng,   ['ng', browserSync.reload]
+  gulp.watch src.jsx,  ['jsx', browserSync.reload]
+  gulp.watch src.jade, ['jade', browserSync.reload]
+
+gulp.task 'default', ['watch']
