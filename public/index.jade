@@ -11,8 +11,8 @@ html(lang='en' ng-app='angularReact')
     script(src='//cdnjs.cloudflare.com/ajax/libs/react/0.13.1/react.js' defer=true)
 
     // We don't have any dependency management (e.g., webpack), so load order is important.
-    script(src='/react/components.js' defer=true)
-    script(src='/angular/app.js' defer=true)
+    script(src='react/components.js' defer=true)
+    script(src='angular/app.js' defer=true)
 
   body
     .container(ng-controller='AppController')
