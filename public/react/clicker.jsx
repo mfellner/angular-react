@@ -1,34 +1,25 @@
-/**
- * ReactJS components
- */
- 
-var Clicker = React.createClass({
+const React = require('react');
 
-  // The default props will be overridden by the directive's attrs.
-  getDefaultProps: function () {
-    return {
-      min: 0,
-      max: Number.MAX_SAFE_INTEGER
-    };
-  },
+class Clicker extends React.Component {
 
-  getInitialState: function () {
-    return {
-      count: this.getMin()
-    };
-  },
+  constructor(props) {
+    super(props);
+    this.state = {count: this.getMin()};
+    this.onClick = this.onClick.bind(this);
+    this.onReset = this.onReset.bind(this);
+  }
 
   // Angular directive's attrs are strings, so we need to parse them.
-  getMin: function () {
+  getMin() {
     return parseInt(this.props.min);
-  },
+  }
 
-  getMax: function () {
+  getMax() {
     return parseInt(this.props.max);
-  },
+  }
 
-  onClick: function () {
-    var count;
+  onClick() {
+    let count;
 
     if (this.state.count < this.getMax()) {
       count = this.state.count + 1;
@@ -36,15 +27,16 @@ var Clicker = React.createClass({
       count = this.getMin();
     }
     this.setState({count: count});
-  },
+  }
 
-  onReset: function () {
+  onReset() {
     this.setState({count: this.getMin()});
-  },
+  }
 
-  render: function () {
+  render() {
     return (
-      <div className="col-md-12">
+      /* jshint ignore:start */
+      <div>
         <button className="btn btn-default" onClick={this.onClick}>
           click <span className="badge">{this.state.count}</span>
         </button>
@@ -52,6 +44,15 @@ var Clicker = React.createClass({
           reset
         </button>
       </div>
+      /* jshint ignore:end */
     );
   }
-});
+}
+
+// The default props will be overridden by the directive's attrs.
+Clicker.defaultProps = {
+  min: 0,
+  max: Number.MAX_SAFE_INTEGER
+};
+
+module.exports = Clicker;

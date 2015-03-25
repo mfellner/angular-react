@@ -1,18 +1,15 @@
 doctype html
 html(lang='en' ng-app='angularReact')
   head
+    meta(name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no')
+
     title=title
 
-    link(rel='stylesheet' href='//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/css/bootstrap.min.css')
-    link(rel='stylesheet' href='//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.3.0/css/material.min.css')
+    each style in styles
+      link(rel='stylesheet' href=style)
 
-    script(src='//ajax.googleapis.com/ajax/libs/angularjs/1.4.0-beta.6/angular.min.js' defer=true)
-    script(src='//cdnjs.cloudflare.com/ajax/libs/react/0.13.1/JSXTransformer.js' defer=true)
-    script(src='//cdnjs.cloudflare.com/ajax/libs/react/0.13.1/react.js' defer=true)
-
-    // We don't have any dependency management (e.g., webpack), so load order is important.
-    script(src='react/components.js' defer=true)
-    script(src='angular/app.js' defer=true)
+    each script in scripts
+      script(src=script defer=true)
 
   body
     .container(ng-controller='AppController')
@@ -22,5 +19,6 @@ html(lang='en' ng-app='angularReact')
           .page-header
             h1 Angular-React #[small React components inside Angular]
 
-      // Angular directive that mounts the React component.
-      ng-react(component="window.Clicker" min="1" max="42")
+      .row
+        // Angular directive that mounts the React component.
+        ng-react(class='col-sm-5 col-md-4' component='Clicker' min='1' max='42')
