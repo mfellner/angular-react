@@ -19,7 +19,7 @@ class Clicker extends React.Component {
   }
 
   onClick() {
-    let count;
+    var count;
 
     if (this.state.count < this.getMax()) {
       count = this.state.count + 1;
