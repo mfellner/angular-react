@@ -1,15 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="angularReact">
   <head>
-    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Angular React</title>
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/css/bootstrap.min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.3.0/css/material.min.css">
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.0-beta.6/angular.min.js" defer></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/react/0.13.1/JSXTransformer.js" defer></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.0-beta.6/angular.js" defer></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/react/0.13.1/react.js" defer></script>
-    <!-- We don't have any dependency management (e.g., webpack), so load order is important.-->
-    <script src="react/components.js" defer></script>
-    <script src="angular/app.js" defer></script>
+    <script src="app.min.js" defer></script>
   </head>
   <body>
     <div ng-controller="AppController" class="container">
@@ -20,8 +18,10 @@
           </div>
         </div>
       </div>
-      <!-- Angular directive that mounts the React component.-->
-      <ng-react component="window.Clicker" min="1" max="42"></ng-react>
+      <div class="row">
+        <!-- Angular directive that mounts the React component.-->
+        <ng-react component="Clicker" min="1" max="42" class="col-sm-5 col-md-4"></ng-react>
+      </div>
     </div>
   </body>
 </html>
